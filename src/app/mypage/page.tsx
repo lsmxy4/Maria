@@ -1,4 +1,24 @@
+'use client'
+import { useEffect } from "react";
+import { useUserStore } from "../store/UserStore";
+import { baseApi } from "../common/baseApi";
+
 export default function Page() {
+
+	 const accessToken = useUserStore((state) => state.accessToken);
+	 
+	 const getEmployees = () =>{
+		baseApi.get("/employees")
+	 }
+	 
+	 useEffect(() => {
+		console.log('accessToken >>> ',accessToken)
+	 },[accessToken]);
+
+	 useEffect (() => {
+		getEmployees();	
+	 },[]);
+
 	return (
 		<div>
 			<div className="rounded-lg border bg-white p-6">
